@@ -1,0 +1,114 @@
+<div ng-init="getRegistrationObject()">
+
+    <div class="loadingContainer">
+        <div ng-show="wait()" class="throbber-loader">
+            Loading..
+        </div>
+    </div>
+
+    <div ng-hide="wait()">
+        <div class="text-center">
+        <div class="col-md-12">
+            <br>
+            <form name="optionsForm" novalidate class="form-inline" role="form">
+                <div class="row">
+                    <h4 class="textColor well"> Registration Data </h4>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="search" class="textColor">Search Record</label>
+                        <input ng-model="q" id="search" class="form-control" placeholder="Filter text">
+                        <br>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="search" class="textColor">Items per page</label>
+
+                        <select ng-model="pageSize" required>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="500">500</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <a href="#home" ng-click="Rides.selectTab(1)">
+                        <input style="float:right;" type="submit" value="X">
+                        </a>
+                        <br>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div>
+            <br><br><br>
+        </div>
+
+        <div class="row">
+            <div class="tableColor tableCol col-md-12">
+                <table class="table">
+                    <tr>
+                        <div class="thCol">
+                            <th colspan="2"> First Name </th>
+                            <th colspan="2"> Last Name </th>
+                            <th colspan="2"> Email </th>
+                            <th colspan="2"> Phone Number </th>
+                            <th colspan="2"> Ride Name </th>
+                            <th colspan="2"> Booking Date </th>
+                            <th colspan="2"> Booking Time </th>
+                            <th colspan="4"> Special Needs </th>
+                        </div>
+                    </tr>
+                    <tr dir-paginate="RegistrationRecord in RegistrationFactory.recordData | filter:q | itemsPerPage: pageSize" current-page="currentPage">
+                        <td colspan="2">
+                            {{RegistrationRecord.FirstName}}
+                        </td>
+                        <td colspan="2">
+                            {{RegistrationRecord.LastName}}
+                        </td>
+                        <td colspan="2">
+                            {{RegistrationRecord.Email | date:'yyyy-MM-dd'}}
+                        </td>
+                        <td colspan="2">
+                            {{RegistrationRecord.PhoneNumber}}
+                        </td>
+                        <td colspan="2">
+                            {{RegistrationRecord.Ride}}
+                        </td>
+                        <td colspan="2">
+                            {{RegistrationRecord.Date | date:'yyyy-MM-dd'}}
+                        </td>
+                        <td colspan="2">
+                            {{RegistrationRecord.Time}}
+                        </td>
+                        <td colspan="4">
+                            {{RegistrationRecord.SpecialNeeds}}
+
+                            <div class="floatRight">
+                                <a href="#editBookings" title="Edit Record" class="btn btn-info" ng-click="selectEditedObject(RegistrationRecord.Id)">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </a>
+                                <a href="javascript:void(0)" title="Delete Record" class="btn btn-info" ng-click="deleteRegistrationObject(RegistrationRecord)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="text-center">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>

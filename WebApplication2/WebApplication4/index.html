@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<meta charset="utf-8">
+<html  ng-app="app">
+<head> 
+    <!-- Angular JS script -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="vendor/angular-route.js" type="application/javascript"></script>
+    <script src="vendor/ui-bootstrap-0.13.0.js" type="application/javascript"></script>
+    <script src="vendor/underscore.js" type="application/javascript"></script>
+    <script src="vendor/ui-bootstrap-tpls-0.13.0.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="vendor/ui-bootstrap-0.13.0-csp.css" type="text/css">
+    <script src="vendor/angular-bootstrap-datepicker.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="http://css-spinners.com/css/spinner/throbber.css" type="text/css">
+    <link rel="stylesheet" href="vendor/angular-growl.min.css" type="text/css">
+    <link rel="stylesheet" href="vendor/main.css" type="text/css" />
+    <script src="vendor/pages/dirPagination.js" type="application/javascript"></script>
+    <script src="vendor/chart/angular-moment.min.js"></script>
+     <script src="app/app.js" type="application/javascript"></script>
+    <script src="app/appController/KangarooRidesController.js" type="application/javascript"></script>
+    <script src="app/appConfig.js" type="application/javascript"></script>
+
+    <title> Crazy Calvin’s Kangaroo Rides </title>
+</head>
+
+<body ng-controller="KangarooRidesController as Rides">
+    <div class="container-fluid">
+        <div growl></div>
+        <div class="row well">
+            <div class="textColor text-center">
+                <h1>Crazy Calvin’s Kangaroo Rides</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 rightBorder">
+                <ul class="nav nav-pills nav-stacked" ng-init="selectTab(1)">
+                    <li ng-class="{active:Rides.isSelected(1)}"> <a href="#home" ng-click="Rides.selectTab(1)"> Home </a> </li>
+                    <li ng-class="{active:Rides.isSelected(2)}"> <a href="#registration" ng-click="Rides.selectTab(2)"> Registration Form </a> </li>
+                    <li ng-class="{active:Rides.isSelected(3)}"> <a href="#reviewBookings" ng-click="Rides.selectTab(3)"> Review Bookings </a> </li>
+                </ul>
+                <br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            </div>
+            <div class="col-md-10">
+                <div ng-view></div>
+            </div>
+        </div>
+
+        <script src="vendor/angular-growl.min.js" type="application/javascript"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    </div>
+</body>
+</html>

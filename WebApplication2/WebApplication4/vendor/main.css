@@ -1,0 +1,143 @@
+.loadingContainer {
+
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    /*display: none;*/
+    z-index: 1000;
+    height: 31px;
+    width: 31px;
+}
+
+/*.bodyColor {
+    background-color: beige;
+/*    background-image: url("images/logo.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    height: 10em;
+}*/
+
+.textColor {
+    color: darkblue;
+}
+
+.buttonSize .btn {
+    height: 150px;
+    width: 150px;
+    text-wrap:normal;
+}
+
+.textSize {
+     font-size:large;
+}
+
+.tableColor table {
+    background-color: GhostWhite;
+    border: solid;
+    color: darkblue;
+}
+
+.tableCol td,th{
+    border-right: inset;
+    text-align: left;
+    padding: 15px;
+    border-collapse: collapse;
+}
+
+.tableColHome td,th{
+    border-right: inset;
+    /*text-align: left;*/
+    padding: 15px;
+    border-collapse: collapse;
+}
+
+.thCol th{
+    border-bottom: inset;
+}
+
+.formColor form{
+    background-color: GhostWhite;
+    border: solid;
+    color: darkblue;
+    padding: 20px;
+    text-align: left;
+}
+
+.ng-invalid{
+    border-color: red;
+}
+
+.ng-valid{
+    border-color: darkgreen;
+}
+
+input[type=submit] {
+    display: block;
+    background: rgba(0, 59, 211, 0.82);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background: darkmagenta;
+}
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.my-datepicker .form-control {
+    height: 10px;
+    padding: 12px;
+    alignment: left;
+}
+
+.my-datepicker .btn {
+    padding: 1px 2px;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+#circle1 {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    font-size: 10px;
+    color: #fff;
+    line-height: 60px;
+    text-align: center;
+    background: #000
+}
+
+.border {
+    border-style: solid;
+    color: lightgrey;
+}
+
+.rightBorder {
+    border-right: solid;
+    color: lightgrey;
+}
+
+.floatRight {
+    float:right;
+}
