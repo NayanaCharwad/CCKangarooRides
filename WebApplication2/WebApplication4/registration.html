@@ -1,12 +1,14 @@
-
+<!--User registration form-->
 <div ng-init="getRideObject()">
 
+    <!--Wait for data loading-->
     <div class="loadingContainer">
         <div ng-show="wait()" class="throbber-loader">
             Loading..
         </div>
     </div>
 
+    <!--Proceed ones data is loaded-->
     <div ng-hide="wait()">
         <div class="row text-center">
             <div>

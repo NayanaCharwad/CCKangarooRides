@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Web API created to retrieve and update data from server for Registration database table
+//These REST APIs are called from angular js controller based on user requests
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -85,19 +87,5 @@ namespace WebApplication4.Controllers
 
             return Ok(registration);
         }
-
-        /*protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }*/
-
-        /*private bool RegistrationExists(int id)
-        {
-            return db.Registrations.Count(e => e.Id == id) > 0;
-        }*/
     }
 }

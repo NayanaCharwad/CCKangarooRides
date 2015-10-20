@@ -1,5 +1,6 @@
 /**
  * Created by charna10 on 6/15/2015.
+ * This file contains route configuration for webpages 
  */
 
 myApp.config([

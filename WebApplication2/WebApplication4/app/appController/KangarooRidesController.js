@@ -1,8 +1,10 @@
+/* Angular JS Controller to get input details from user and use REST API calls to initialize or update data on server */
 myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','growl','ApplicationFactory','RegistrationFactory',
     function ($scope, $http, $location,growl,ApplicationFactory,RegistrationFactory) {
 
     this.tab = 1;
 
+    //Highlight selected tab for better user experience
     this.selectTab = function(setTab)
     {
         this.tab = setTab;
@@ -13,13 +15,13 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
         return this.tab === checkTab;
     }
 
+    // Data initialization
     $scope.model = {};
     $scope.RegistrationFactory = RegistrationFactory;
     $scope.activetab = 1;
     $scope.newRegistration = {};
     $scope.newRide = {};
     $scope.newRegistration.Date = new Date();
-
     $scope.mydp = {opened: false, opened1: false};
     $scope.eventSources = [];
     $scope.lineIsReady = false;
@@ -30,22 +32,26 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
     $scope.pageChangeHandler = function(num) {
     };
 
+    //options for calendar shown while selecting date
     $scope.dateOptions = {
         formatYear: 'yy',
         startingDay: 1
     };
 
+    //calendar open event
     $scope.open = function ($event) {
         $event.preventDefault();
         $event.stopPropagation();
         $scope.mydp.opened = true;
     };
 
+    //function module to save registration object through REST API calls
     $scope.saveRegistrationObject = function () {
 
         $scope.newRegistration.Date.setHours(12);
         var duplicate = false;
 
+        //Check for duplicate entry
         for (var i in RegistrationFactory.recordData) {
             if (RegistrationFactory.recordData[i].FirstName == $scope.newRegistration.FirstName
                 && RegistrationFactory.recordData[i].LastName == $scope.newRegistration.LastName
@@ -57,6 +63,7 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
             }
         }
 
+        //Check if same date and time slot is booked for atleast three times before
         var count = 0;
         for (var i in RegistrationFactory.recordData) {
 
@@ -71,11 +78,13 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
             }
         }
 
+        //if booked already display message to user asking to choose different time slot
         if(count >= 3)
         {
             growl.error("<strong>Maximum rides already booked for this date and time! Please choose different date or time!<strong>");
         }
 
+        //if data passes validation update data on server
         else if(!duplicate) {
             RegistrationFactory.save($scope.newRegistration).then(function () {
                 $scope.newRegistration = {};
@@ -86,6 +95,7 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
         }
     };
 
+    // Ge registration object information selected by user
     $scope.getRegistrationObject = function () {
 
         ApplicationFactory.setWait(true);
@@ -97,6 +107,7 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
         });
     };
 
+    // Delete registration object
     $scope.deleteRegistrationObject = function (record) {
 
         RegistrationFactory.deleteRecord(record).then(function () {
@@ -107,6 +118,7 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
 
     };
 
+    // Edit registration object
     $scope.editRegistrationObject = function (RegistrationRecord) {
 
         RegistrationFactory.edit(RegistrationRecord).then(function () {
@@ -126,10 +138,12 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
         $scope.editData = RegistrationFactory.getEditedObject();
     };
 
+    // Function used to display loading icon to user while data is being fetched from server
     $scope.wait = function () {
         return ApplicationFactory.getWait();
     };
 
+    //Save ride object
     $scope.saveRideObject= function () {
         RegistrationFactory.saveRide($scope.newRide).then(function () {
             growl.success("<strong>Saved</strong>");
@@ -140,6 +154,7 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
         });
     };
 
+    // Get ride object selected by user
     $scope.getRideObject = function () {
 
         ApplicationFactory.setWait(true);
@@ -156,6 +171,7 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
     $scope.opened = false;
 }]);
 
+//Application factory used to check if data is loaded from server or not
 myApp.factory('ApplicationFactory', ['$http', '$q', function ($http, $q) {
     var application = {};
     var wait = false;
@@ -172,6 +188,7 @@ myApp.factory('ApplicationFactory', ['$http', '$q', function ($http, $q) {
     return application;
 }]);
 
+//Registration factory is used to store data loaded from server so as to avoid going to server everytime user requests
 myApp.factory('RegistrationFactory', ['$http', '$filter', '$q','growl', function ($http, $filter, $q,growl) {
 
     return {
@@ -180,7 +197,7 @@ myApp.factory('RegistrationFactory', ['$http', '$filter', '$q','growl', function
         opened: false,
         rideData: [],
 
-        //method to initialize records at start before actual processing data
+        //method to initialize registration records at start before actual processing data
         initializeRecords: function () {
             var $this = this;
 
@@ -194,7 +211,7 @@ myApp.factory('RegistrationFactory', ['$http', '$filter', '$q','growl', function
             return deferred.promise;
         },
 
-        //method to initialize records at start before actual processing data
+        //method to initialize ride records at start before actual processing data
         initializeRideRecords: function () {
             var $this = this;
 

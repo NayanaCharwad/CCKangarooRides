@@ -1,6 +1,5 @@
 c:\users\charna10\documents\visual studio 2013\Projects\WebApplication2\WebApplication4\bin\WebApplication4.dll.config
 c:\users\charna10\documents\visual studio 2013\Projects\WebApplication2\WebApplication4\bin\WebApplication4.dll
 c:\users\charna10\documents\visual studio 2013\Projects\WebApplication2\WebApplication4\bin\WebApplication4.pdb
-c:\users\charna10\documents\visual studio 2013\Projects\WebApplication2\WebApplication4\obj\Debug\KangarooRides.csprojResolveAssemblyReference.cache
 c:\users\charna10\documents\visual studio 2013\Projects\WebApplication2\WebApplication4\obj\Debug\WebApplication4.dll
 c:\users\charna10\documents\visual studio 2013\Projects\WebApplication2\WebApplication4\obj\Debug\WebApplication4.pdb

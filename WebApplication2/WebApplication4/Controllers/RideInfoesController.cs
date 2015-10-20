@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Web API created to retrieve and update data from server for Ride database table
+//These REST APIs are called from angular js controller based on user requests
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;

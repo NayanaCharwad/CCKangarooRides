@@ -1,11 +1,14 @@
+<!--Review existing bookings-->
 <div ng-init="getRegistrationObject()">
 
+    <!--Wait untill data is loaded from database-->
     <div class="loadingContainer">
         <div ng-show="wait()" class="throbber-loader">
             Loading..
         </div>
     </div>
 
+    <!--Continue ones data is retrieved from database-->
     <div ng-hide="wait()">
         <div class="text-center">
         <div class="col-md-12">
