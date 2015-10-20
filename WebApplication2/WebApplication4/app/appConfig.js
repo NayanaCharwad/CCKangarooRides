@@ -26,6 +26,10 @@ myApp.config([
                     templateUrl:  'EditBookings.html',
                 })
 
+                .when('/addRide', {
+                    templateUrl:  'AddRide.html',
+                })
+
                 .otherwise({
                     redirectTo: '/'
                 });

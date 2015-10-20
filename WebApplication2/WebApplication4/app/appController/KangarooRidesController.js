@@ -17,6 +17,7 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
     $scope.RegistrationFactory = RegistrationFactory;
     $scope.activetab = 1;
     $scope.newRegistration = {};
+    $scope.newRide = {};
     $scope.newRegistration.Date = new Date();
 
     $scope.mydp = {opened: false, opened1: false};
@@ -77,7 +78,6 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
 
         else if(!duplicate) {
             RegistrationFactory.save($scope.newRegistration).then(function () {
-                growl.success("<strong>Saved</strong>");
                 $scope.newRegistration = {};
                 $location.path("#reviewBookings");
             }, function () {
@@ -130,6 +130,27 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
         return ApplicationFactory.getWait();
     };
 
+    $scope.saveRideObject= function () {
+        RegistrationFactory.saveRide($scope.newRide).then(function () {
+            growl.success("<strong>Saved</strong>");
+            $scope.newRide = {};
+            $location.path("#reviewBookings");
+        }, function () {
+            growl.error("<strong>Error During Save<strong>");
+        });
+    };
+
+    $scope.getRideObject = function () {
+
+        ApplicationFactory.setWait(true);
+
+        RegistrationFactory.initializeRideRecords().then(function () {
+            ApplicationFactory.setWait(false);
+        }, function () {
+            ApplicationFactory.setWait(true);
+        });
+    };
+
     $scope.formData = {};
     $scope.newRegistration.date = "";
     $scope.opened = false;
@@ -151,12 +172,13 @@ myApp.factory('ApplicationFactory', ['$http', '$q', function ($http, $q) {
     return application;
 }]);
 
-myApp.factory('RegistrationFactory', ['$http', '$filter', '$q', function ($http, $filter, $q) {
+myApp.factory('RegistrationFactory', ['$http', '$filter', '$q','growl', function ($http, $filter, $q,growl) {
 
     return {
         recordData: [],
         editData: {},
         opened: false,
+        rideData: [],
 
         //method to initialize records at start before actual processing data
         initializeRecords: function () {
@@ -165,6 +187,20 @@ myApp.factory('RegistrationFactory', ['$http', '$filter', '$q', function ($http,
             var deferred = $q.defer();
             $http.get('api/Registrations').success(function (data) {
                 $this.recordData = data;
+                deferred.resolve(data);
+            }).error(function (data) {
+                deferred.reject(data)
+            });
+            return deferred.promise;
+        },
+
+        //method to initialize records at start before actual processing data
+        initializeRideRecords: function () {
+            var $this = this;
+
+            var deferred = $q.defer();
+            $http.get('api/RideInfoes').success(function (data) {
+                $this.rideData = data;
                 deferred.resolve(data);
             }).error(function (data) {
                 deferred.reject(data)
@@ -182,6 +218,8 @@ myApp.factory('RegistrationFactory', ['$http', '$filter', '$q', function ($http,
 
             $http.post('api/Registrations', record).success(function (savedRecord) {
                 $this.recordData.push(savedRecord);
+                console.log(savedRecord.Id);
+                growl.success("Congratulations! Your booking confirmation number is : " + savedRecord.Id);
                 deferred.resolve(true);
             }).error(function () {
                 deferred.$$reject(false);
@@ -189,6 +227,23 @@ myApp.factory('RegistrationFactory', ['$http', '$filter', '$q', function ($http,
             return deferred.promise;
         },
 
+        //save method create a new Ride records if not already exists
+        //else update the existing Ride record
+        saveRide: function (record) {
+
+            var $this = this;
+
+            var deferred = $q.defer();
+
+            $http.post('api/RideInfoes', record).success(function (savedRecord) {
+                $this.rideData.push(savedRecord);
+                console.log(savedRecord.Id);
+                deferred.resolve(true);
+            }).error(function () {
+                deferred.$$reject(false);
+            });
+            return deferred.promise;
+        },
 
         //save method create a new Registration records if not already exists
         //else update the existing Registration record

@@ -1,0 +1,35 @@
+
+
+<div class="row text-center">
+    <div>
+        <div class="col-md-12">
+            <h4 class="textColor"> Add New Ride </h4>
+
+            <a href="#home" ng-click="Rides.selectTab(1)">
+                <input style="float:right;" type="submit" value="X">
+            </a>
+
+            <div class="formColor">
+                <form name="RideForm" novalidate class="form-horizontal" role="form" ng-submit="saveRideObject()">
+                    <div class="text-center" ng-hide="RideForm.$valid">
+                        <span style="color:darkblue"> Please fill all fields marked in red </span>
+                    </div>
+
+                    <div class="form-group">
+                        <br>
+                        <label class="col-sm-2">Ride Name</label>
+                        <input class="col-sm-2" type="text" name="FirstName" ng-model="newRide.RideName"  placeholder="Enter First Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <br>
+                        <input type="hidden" ng-model="newRide.id">
+                        <div ng-show="RideForm.$valid">
+                            <input style="float:left; margin-left:150px;" type="submit" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
