@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <br>
                             <label class="col-sm-2">Ride Name</label>
-                            <select class="col-sm-2" ng-model="RegistrationFactory.editData.Ride" ng-options="record.RideName for record in RegistrationFactory.rideData" required>
+                            <select class="col-sm-2" ng-model="RegistrationFactory.editData.Ride" ng-options="record.RideName as record.RideName for record in RegistrationFactory.rideData" required>
                             </select>
                          <!--//   <input class="col-sm-2" type="text" name="comment" ng-model="RegistrationFactory.editData.Ride">-->
                         </div>

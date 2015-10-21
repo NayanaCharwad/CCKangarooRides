@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <br>
                                 <label class="col-sm-2">Ride Name</label>
-                                <select class="col-sm-2" ng-model="newRegistration.Ride" ng-options="record.RideName for record in RegistrationFactory.rideData" required>
+                                <select class="col-sm-2" ng-model="newRegistration.Ride" ng-options="record.RideName as record.RideName for record in RegistrationFactory.rideData" required>
                                     <!--<option value="Jumpy Joey Easy Ride">Jumpy Joey Easy Ride</option>-->
                                     <!--<option value="Big Bounder Down Under Ride">Big Bounder Down Under Ride</option>-->
                                     <!--<option value="Deadly Outback Special">Deadly Outback Special</option>-->

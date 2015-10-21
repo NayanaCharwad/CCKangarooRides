@@ -31,6 +31,9 @@ myApp.config([
                     templateUrl:  'AddRide.html',
                 })
 
+                .when('/chart', {
+                    templateUrl:  'Graph.html',
+                })
                 .otherwise({
                     redirectTo: '/'
                 });

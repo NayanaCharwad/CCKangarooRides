@@ -166,6 +166,33 @@ myApp.controller('KangarooRidesController', ['$scope', '$http', '$location','gro
         });
     };
 
+    $scope.drawBarChart = function () {
+        $scope.b_labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September","October", "November", "December",];
+        $scope.b_series = ["Current Year"];
+        $scope.b_data = [];
+
+        var currentYear = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        var today = new Date();
+        var month = today.getMonth();
+        var year = today.getFullYear();
+
+        //calculate current fiscal year data
+        for(var i in RegistrationFactory.recordData)
+        {
+            var tempDate = new Date(RegistrationFactory.recordData[i].Date);
+
+            if(year == tempDate.getFullYear()) {
+                currentYear[tempDate.getMonth()] += 1;
+            }
+        }
+
+        $scope.b_data.push(currentYear);
+
+        $scope.onClick = function (points, evt) {
+        }
+    };
+
     $scope.formData = {};
     $scope.newRegistration.date = "";
     $scope.opened = false;

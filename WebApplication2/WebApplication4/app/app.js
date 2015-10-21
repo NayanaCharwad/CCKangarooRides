@@ -4,5 +4,5 @@
  */
 
 var myApp = angular.module('app', ['ngRoute', 'angular-growl', 'ng-bootstrap-datepicker', 'ui.bootstrap',
-                                   'angularUtils.directives.dirPagination']);
+                                   'angularUtils.directives.dirPagination','chart.js','nvd3ChartDirectives']);
 

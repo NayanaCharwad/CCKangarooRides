@@ -1,0 +1,24 @@
+<div> <br> <br> </div>
+<div ng-init="getRegistrationObject()">
+
+    <!--Wait untill data is loaded from database-->
+    <div class="loadingContainer">
+        <div ng-show="wait()" class="throbber-loader">
+            Loading..
+        </div>
+    </div>
+
+    <!--Continue ones data is retrieved from database-->
+    <div ng-hide="wait()">
+
+        <div ng-init="drawBarChart()">
+            <div class="col-md-offset-2 col-md-8 text-center border" >
+                <h4 class="textColor well"> Current Year's Bookings </h4>
+
+                <canvas id="line" class="chart chart-line" data="b_data" series="b_series"
+                        labels="b_labels" legend="true" responsive="true" ></canvas>
+            </div>
+            
+        </div>
+    </div>
+</div>
