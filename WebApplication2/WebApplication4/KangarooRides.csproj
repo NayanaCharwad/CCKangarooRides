@@ -425,6 +425,9 @@
     <Content Include="vendor\ngDraggable.js" />
     <Content Include="vendor\pages\dirPagination.js" />
     <Content Include="vendor\pagination.js" />
+    <Content Include="vendor\Ride1.jpg" />
+    <Content Include="vendor\Ride2.jpg" />
+    <Content Include="vendor\Ride3.JPG" />
     <Content Include="vendor\ui-bootstrap-0.13.0-csp.css" />
     <Content Include="vendor\ui-bootstrap-0.13.0.js" />
     <Content Include="vendor\ui-bootstrap-0.13.0.min.js" />
